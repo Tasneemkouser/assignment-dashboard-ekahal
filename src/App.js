@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import AppRouter from "./AppRouter";
+import "./styles.css";
 
-function App() {
+import { Client as Styletron } from "styletron-engine-atomic";
+import { Provider as StyletronProvider } from "styletron-react";
+import { LightTheme, BaseProvider } from "baseui";
+import PageLayout from "./components/PageLayout";
+import ErrorMessage from "./components/ErrorMessage";
+import { useAuth } from "./providers/FirebaseAuthProvider";
+const engine = new Styletron();
+
+export default function App() {
+  const { error } = useAuth();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyletronProvider value={engine}>
+      <BaseProvider theme={LightTheme}>
+        <PageLayout>
+          <AppRouter />
+          <ErrorMessage error={error} />
+        </PageLayout>
+      </BaseProvider>
+    </StyletronProvider>
   );
 }
-
-export default App;

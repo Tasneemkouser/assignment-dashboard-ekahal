@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: -1;
+}
+
+body::before {
+  background: url(https://www.skymetweather.com/content/wp-content/uploads/2014/12/MORE-Cropped.jpg)
+    no-repeat center / cover;
+  background-attachment: fixed;
+  z-index: -2;
+}
+
+body::after {
+  background-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(5px);
+}
+
+.ui-top-section + [data-baseweb="tabs"] > [role="tablist"] > [role="tab"] {
+  flex: 1;
+  text-align: center;
+}
+
+.ui-top-section + [data-baseweb="tabs"] [role="tabpanel"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+[data-baseweb="side-navigation"] {
+  height: 100%;
+}
+
+.ui-top-section [data-baseweb="card"] {
+  max-width: 50%;
+  flex: 1;
+}
